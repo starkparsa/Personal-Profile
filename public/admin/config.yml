@@ -2,8 +2,7 @@ backend:
   name: github
   repo: starkparsa/Personal-Profile
   branch: main
-  # TODO: replace with your deployed Cloudflare Worker URL (see README "Editing the site" section)
-  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
+  base_url: https://decap-cms-github-oauth-api.starkparsa.workers.dev
   auth_endpoint: auth
 
 # Lets you preview the CMS locally against a local git backend before OAuth is wired up:
