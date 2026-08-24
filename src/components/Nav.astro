@@ -1,0 +1,85 @@
+---
+import site from "../data/site.json";
+import { withBase } from "../utils/paths";
+
+const links = [
+  { href: withBase("/#experience"), label: "Experience" },
+  { href: withBase("/#skills"), label: "Skills" },
+  { href: withBase("/projects"), label: "Projects" },
+  { href: withBase("/blog"), label: "Blog" },
+];
+---
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href={withBase("/")} class="brand">
+      <span class="brand-prompt">~/</span>{site.name.split(" ")[0].toLowerCase()}
+    </a>
+    <nav class="links">
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+      <a href={withBase(site.resumeFile)} class="btn btn-accent resume-btn" download>Resume</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .brand {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .brand-prompt {
+    color: var(--accent);
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  .links a:not(.resume-btn) {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .links a:not(.resume-btn):hover {
+    color: var(--accent);
+  }
+
+  .resume-btn {
+    padding: 0.45rem 0.9rem;
+  }
+
+  @media (max-width: 640px) {
+    .links {
+      gap: 1rem;
+    }
+    .links a:not(.resume-btn) {
+      display: none;
+    }
+  }
+</style>

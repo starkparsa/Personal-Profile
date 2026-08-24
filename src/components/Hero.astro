@@ -1,0 +1,113 @@
+---
+import site from "../data/site.json";
+import { withBase } from "../utils/paths";
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-kicker">{site.subtitle}</p>
+      <h1 class="hero-title">{site.name}</h1>
+      <p class="hero-role">{site.tagline}</p>
+      <p class="hero-bio">{site.bio}</p>
+      <div class="hero-actions">
+        <a href={withBase("/projects")} class="btn btn-accent">View Projects</a>
+        <a href={withBase(site.resumeFile)} class="btn" download>Download Résumé</a>
+        <a href={site.githubUrl} class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href={site.linkedinUrl} class="btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-graphic" aria-hidden="true">
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="var(--border-hover)" stroke-width="1" fill="none">
+          <line x1="60" y1="70" x2="160" y2="40" />
+          <line x1="60" y1="70" x2="40" y2="170" />
+          <line x1="160" y1="40" x2="250" y2="90" />
+          <line x1="160" y1="40" x2="130" y2="150" />
+          <line x1="40" y1="170" x2="130" y2="150" />
+          <line x1="130" y1="150" x2="250" y2="90" />
+          <line x1="130" y1="150" x2="180" y2="240" />
+          <line x1="250" y1="90" x2="270" y2="200" />
+          <line x1="180" y1="240" x2="270" y2="200" />
+          <line x1="40" y1="170" x2="90" y2="260" />
+          <line x1="90" y1="260" x2="180" y2="240" />
+        </g>
+        <g fill="var(--accent)">
+          <circle cx="60" cy="70" r="4" opacity="0.9" />
+          <circle cx="160" cy="40" r="5" opacity="0.6" />
+          <circle cx="250" cy="90" r="4" opacity="0.9" />
+          <circle cx="40" cy="170" r="4" opacity="0.6" />
+          <circle cx="130" cy="150" r="6" />
+          <circle cx="180" cy="240" r="4" opacity="0.7" />
+          <circle cx="270" cy="200" r="4" opacity="0.5" />
+          <circle cx="90" cy="260" r="4" opacity="0.8" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 5rem 0 4rem;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .hero-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 0.75rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin: 0;
+  }
+
+  .hero-role {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .hero-bio {
+    max-width: 46ch;
+    color: var(--text-muted);
+    margin: 0 0 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hero-graphic svg {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  @media (max-width: 800px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+    .hero-graphic {
+      order: -1;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+  }
+</style>

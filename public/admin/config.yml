@@ -1,0 +1,101 @@
+backend:
+  name: github
+  repo: starkparsa/Personal-Profile
+  branch: main
+  # TODO: replace with your deployed Cloudflare Worker URL (see README "Editing the site" section)
+  base_url: https://REPLACE-WITH-YOUR-WORKER.workers.dev
+  auth_endpoint: auth
+
+# Lets you preview the CMS locally against a local git backend before OAuth is wired up:
+#   npx decap-server
+# and open the site at /admin?local_backend
+local_backend: true
+
+publish_mode: simple
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "General"
+        file: "src/data/site.json"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "GitHub URL", name: "githubUrl", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedinUrl", widget: "string" }
+          - label: "Resume File"
+            name: "resumeFile"
+            widget: "file"
+            hint: "Upload a new PDF to replace your résumé"
+          - { label: "Bio", name: "bio", widget: "text" }
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            fields:
+              - { label: "Degree", name: "degree", widget: "string" }
+              - { label: "School", name: "school", widget: "string" }
+              - { label: "Detail", name: "detail", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            fields:
+              - { label: "Category", name: "category", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+
+  - name: "experience"
+    label: "Experience"
+    folder: "src/content/experience"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Company", name: "company", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Start Date", name: "startDate", widget: "string", hint: "e.g. Dec 2025" }
+      - { label: "End Date", name: "endDate", widget: "string", hint: "e.g. Present" }
+      - { label: "Order", name: "order", widget: "number", hint: "1 = most recent, shown first" }
+      - { label: "Bullet points", name: "body", widget: "markdown" }
+
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short description (used on cards)", name: "description", widget: "text" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "GitHub URL", name: "githubUrl", widget: "string", required: false }
+      - { label: "Live URL", name: "liveUrl", widget: "string", required: false }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["current", "past"]
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false }
+      - { label: "Date", name: "date", widget: "string", hint: "e.g. 2026-01, used for sorting" }
+      - { label: "Full write-up", name: "body", widget: "markdown", required: false }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Post body", name: "body", widget: "markdown" }

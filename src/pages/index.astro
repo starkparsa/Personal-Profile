@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+import site from "../data/site.json";
+import { withBase } from "../utils/paths";
+
+const projects = await getCollection("projects");
+const featured = projects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+---
+
+<BaseLayout title={`${site.name} — ${site.tagline}`}>
+  <Hero />
+  <ExperienceTimeline />
+  <SkillsGrid />
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <div class="projects-head">
+        <h2 class="section-title">Featured work</h2>
+        <a href={withBase("/projects")} class="btn">View all →</a>
+      </div>
+      <div class="projects-grid">
+        {featured.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.tags}
+            githubUrl={project.data.githubUrl}
+            liveUrl={project.data.liveUrl}
+            status={project.data.status}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .projects-head .section-title {
+    margin-bottom: 0;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 700px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .projects-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>

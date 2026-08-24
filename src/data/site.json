@@ -1,0 +1,43 @@
+{
+  "name": "Vaibhav Parasa",
+  "tagline": "AI/ML Engineer",
+  "subtitle": "Data Scientist & ML Engineer · Agentic AI & LLM Systems",
+  "location": "San Francisco, CA (open to relocation)",
+  "email": "vaibhav.v.parasa@gmail.com",
+  "githubUrl": "https://github.com/starkparsa",
+  "linkedinUrl": "https://www.linkedin.com/in/vaibhavparasa/",
+  "resumeFile": "/resume.pdf",
+  "bio": "I'm an AI/ML engineer working at the intersection of data engineering and agentic AI — designing LLM-driven systems, production ML pipelines, and the infrastructure that keeps them reliable at scale. My background spans agent architectures built on LangChain, ETL/ELT pipelines across Databricks and Snowflake, and predictive modeling for forecasting and demand planning. I hold an M.S. in Data Science from Florida State University and hold ServiceNow Admin & Developer certifications.",
+  "education": [
+    {
+      "degree": "M.S. Data Science",
+      "school": "Florida State University, Tallahassee FL",
+      "detail": "GPA 3.66 / 4.0",
+      "date": "Dec 2024"
+    },
+    {
+      "degree": "B.S. Computer Science",
+      "school": "GITAM University, Hyderabad India",
+      "detail": "GPA 3.0 / 4.0",
+      "date": "May 2022"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Core",
+      "items": ["Python", "SQL", "Databricks", "Snowflake", "AWS", "Spark", "Tableau", "Scikit-learn", "Pandas"]
+    },
+    {
+      "category": "ML & AI",
+      "items": ["LangChain", "Agentic AI", "LLM Deployment", "MLflow", "Optuna", "Predictive & Statistical Modeling", "Forecasting"]
+    },
+    {
+      "category": "Infrastructure",
+      "items": ["ETL/ELT Pipelines", "Data Warehousing", "Cloud Architecture", "Backend APIs", "FastAPI", "Docker", "CI/CD"]
+    },
+    {
+      "category": "Platforms",
+      "items": ["ServiceNow (Admin & Developer Certified)", "JavaScript", "HTML/CSS", "IoT & ESP-32", "Agile/SCRUM", "KPI Design"]
+    }
+  ]
+}

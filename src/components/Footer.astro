@@ -1,0 +1,56 @@
+---
+import site from "../data/site.json";
+import { withBase } from "../utils/paths";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-text">© {year} {site.name}</p>
+    <div class="footer-links">
+      <a href={site.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href={site.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={`mailto:${site.email}`}>Email</a>
+      <a href={withBase(site.resumeFile)} download>Resume</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+</style>

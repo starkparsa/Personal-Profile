@@ -1,0 +1,108 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  status: "current" | "past";
+  href?: string;
+}
+
+const { title, description, tags, githubUrl, liveUrl, status, href } = Astro.props;
+---
+
+<article class="project-card card">
+  <div class="project-head">
+    <h3>{href ? <a href={href}>{title}</a> : title}</h3>
+    <span class={`status status-${status}`}>{status === "current" ? "Active" : "Past"}</span>
+  </div>
+  <p class="project-desc">{description}</p>
+  <div class="project-tags">
+    {tags.map((tag) => (
+      <span class="pill">{tag}</span>
+    ))}
+  </div>
+  <div class="project-links">
+    {githubUrl && (
+      <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+        Source →
+      </a>
+    )}
+    {liveUrl && (
+      <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+        Live →
+      </a>
+    )}
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .project-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .project-head h3 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+
+  .status-current {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  .status-past {
+    color: var(--text-dim);
+  }
+
+  .project-desc {
+    flex: 1;
+    font-size: 0.92rem;
+    margin: 0 0 1.1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .project-links a {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .project-links a:hover {
+    color: var(--accent);
+  }
+</style>

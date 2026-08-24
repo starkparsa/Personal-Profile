@@ -1,0 +1,51 @@
+---
+import site from "../data/site.json";
+---
+
+<section id="skills" class="section">
+  <div class="container">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      {site.skills.map((group) => (
+        <div class="skill-group">
+          <h3>{group.category}</h3>
+          <div class="skill-items">
+            {group.items.map((item) => (
+              <span class="pill">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-group h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.9rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
