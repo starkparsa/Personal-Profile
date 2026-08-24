@@ -5,7 +5,7 @@ tags: ["CatBoost", "scikit-learn", "Pandas", "Isolation Forest"]
 githubUrl: "https://github.com/starkparsa/Predicting-Loan-Payback---Kaggle"
 status: "past"
 featured: false
-date: "2025-11"
+date: "2025-12"
 ---
 
 A CatBoost-based risk model scoring loan applicants' repayment probability for a Kaggle competition.

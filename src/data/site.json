@@ -22,6 +22,27 @@
       "date": "May 2022"
     }
   ],
+  "certifications": [
+    { "name": "ServiceNow Certified System Administrator", "issuer": "ServiceNow", "date": "2022" },
+    { "name": "ServiceNow Certified Application Developer", "issuer": "ServiceNow", "date": "2022" },
+    { "name": "The Future of Payment Technologies", "issuer": "University of Michigan", "date": "Mar 2022" },
+    { "name": "Service-Oriented Architecture", "issuer": "University of Alberta", "date": "Feb 2022" },
+    { "name": "Cryptography", "issuer": "University of Maryland, College Park", "date": "Dec 2021" },
+    { "name": "Cloud Computing Applications, Part 1: Cloud Systems and Infrastructure", "issuer": "University of Illinois Urbana-Champaign", "date": "Nov 2021" },
+    { "name": "Cloud Computing Basics (Cloud 101)", "issuer": "LearnQuest", "date": "Nov 2021" },
+    { "name": "Ethics, Technology and Engineering", "issuer": "Eindhoven University of Technology, 4TU.Ethics", "date": "Nov 2021" },
+    { "name": "Essentials of Entrepreneurship: Thinking & Action", "issuer": "University of California, Irvine", "date": "Aug 2021" },
+    { "name": "Machine Learning Algorithms: Supervised Learning Tip to Tail", "issuer": "Alberta Machine Intelligence Institute", "date": "Aug 2021" },
+    { "name": "Agile Software Development", "issuer": "University of Minnesota", "date": "Feb 2021" },
+    { "name": "Data Visualization", "issuer": "University of Illinois Urbana-Champaign", "date": "Feb 2021" }
+  ],
+  "publications": [
+    {
+      "title": "Student Attendance and Registration Using InverTrac as WebAPI",
+      "venue": "International Journal of Early Childhood Special Education",
+      "date": "Oct 2022"
+    }
+  ],
   "skills": [
     {
       "category": "Core",
@@ -29,7 +50,7 @@
     },
     {
       "category": "ML & AI",
-      "items": ["LangChain", "Agentic AI", "LLM Deployment", "MLflow", "Optuna", "Predictive & Statistical Modeling", "Forecasting"]
+      "items": ["LangChain", "Agentic AI", "RAG", "LLM Deployment", "LLM Evaluation", "MLflow", "Optuna", "Predictive & Statistical Modeling", "Forecasting"]
     },
     {
       "category": "Infrastructure",

@@ -3,9 +3,9 @@ title: "Cart Abandonment Prediction"
 description: "Binary classification system predicting which shoppers will abandon their cart during new product launches, built to production ML standards with strict target-leakage controls."
 tags: ["scikit-learn", "LightGBM", "Optuna", "MLflow", "Pandas"]
 githubUrl: "https://github.com/starkparsa/Abandon-Rate-based-on-Customer-Behavior"
-status: "past"
+status: "current"
 featured: true
-date: "2026-02"
+date: "2026-01"
 ---
 
 Classification pipeline on 100K e-commerce records: 60+ raw signals engineered into 30 interpretable behavioral features across nine categories (engagement intensity, purchase intent, discount sensitivity, stress indicators, and more), with target-leakage variables explicitly identified and removed.

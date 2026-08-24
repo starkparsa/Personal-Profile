@@ -45,6 +45,20 @@ collections:
               - { label: "School", name: "school", widget: "string" }
               - { label: "Detail", name: "detail", widget: "string" }
               - { label: "Date", name: "date", widget: "string" }
+          - label: "Certifications"
+            name: "certifications"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Issuer", name: "issuer", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
+          - label: "Publications"
+            name: "publications"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Venue", name: "venue", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
           - label: "Skills"
             name: "skills"
             widget: "list"

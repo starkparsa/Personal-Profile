@@ -1,0 +1,137 @@
+---
+import site from "../data/site.json";
+---
+
+<section id="education" class="section">
+  <div class="container">
+    <p class="section-label">Education & Credentials</p>
+    <h2 class="section-title">Background</h2>
+    <div class="edu-grid">
+      <div class="edu-col">
+        <h3>Education</h3>
+        <ul class="edu-list">
+          {site.education.map((edu) => (
+            <li class="edu-item">
+              <div class="edu-item-head">
+                <span class="edu-degree">{edu.degree}</span>
+                <span class="edu-date">{edu.date}</span>
+              </div>
+              <p class="edu-school">{edu.school} · {edu.detail}</p>
+            </li>
+          ))}
+        </ul>
+
+        {site.publications.length > 0 && (
+          <>
+            <h3 class="pub-heading">Publications</h3>
+            <ul class="edu-list">
+              {site.publications.map((pub) => (
+                <li class="edu-item">
+                  <p class="edu-degree">{pub.title}</p>
+                  <p class="edu-school">{pub.venue} · {pub.date}</p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+
+      <div class="edu-col">
+        <h3>Certifications</h3>
+        <ul class="cert-list">
+          {site.certifications.map((cert) => (
+            <li class="cert-item">
+              <span class="cert-name">{cert.name}</span>
+              <span class="cert-meta">{cert.issuer} · {cert.date}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .edu-col h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 1rem;
+  }
+
+  .pub-heading {
+    margin-top: 2rem;
+  }
+
+  .edu-list,
+  .cert-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .edu-item-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .edu-degree {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .edu-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .edu-school {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin: 0.2rem 0 0;
+  }
+
+  .cert-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cert-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .cert-name {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .cert-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 700px) {
+    .edu-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

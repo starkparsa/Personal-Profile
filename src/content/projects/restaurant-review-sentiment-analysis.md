@@ -10,6 +10,6 @@ date: "2023-12"
 
 Applies sentiment analysis to the Yelp Academic Dataset to predict dining recommendations from review text.
 
-- Compared three embedding approaches (BERT, BART, Word2Vec) feeding into three classifiers (SVM, Logistic Regression, CNN) — nine encoder–decoder combinations in total.
-- Pipeline: extract reviews → balance classes across ratings → generate embeddings → train classifiers → evaluate on accuracy, precision, recall, and F1.
-- Team project with two collaborators; findings written up in a full technical report alongside the code.
+- Led a team of 3, testing every pairing across encoders (Word2Vec, BERT, BART, T5) and decoders (Logistic Regression, SVM, MLP, CNN, Random Forest, Gradient Boosting).
+- Extracted and processed data from the full Yelp dataset, restructuring data storage to cut retrieval time by 25%.
+- Compared outcomes across every encoder–decoder combination on accuracy, precision, recall, and F1; findings written up in a full technical report alongside the code.

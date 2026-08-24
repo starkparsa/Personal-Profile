@@ -5,7 +5,7 @@ tags: ["Tableau", "Python", "Pandas"]
 githubUrl: "https://github.com/starkparsa/Lodon_bike_rides_dashboard"
 status: "past"
 featured: false
-date: "2025-07"
+date: "2025-08"
 ---
 
 A complete data-to-visualization pipeline built on a Kaggle London bike-sharing dataset.
