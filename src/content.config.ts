@@ -35,7 +35,10 @@ const blog = defineCollection({
     // Decap's date widget writes dates back unquoted, which YAML parses as a native
     // timestamp (not a string). z.coerce.date() accepts a quoted string, an unquoted
     // YAML timestamp, or a Date object alike, so it's immune to that either way.
-    date: z.coerce.date(),
+    // .catch() is a second safety net: if a future CMS quirk ever writes something
+    // uncoercible (as "{{now}}" did once, unresolved), fall back to today rather than
+    // failing content validation and breaking the ENTIRE site build over one field.
+    date: z.coerce.date().catch(() => new Date()),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),

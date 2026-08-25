@@ -7,7 +7,7 @@ description: "One dev session, four threads that turned out to be connected:
   and caught, a model that silently burns its token budget on invisible
   reasoning (twice, on two different providers), and a reminder that free-tier
   quotas lie more than you'd think."
-date: "{{now}}"
+date: "2026-08-25"
 tags: []
 draft: false
 ---
