@@ -41,6 +41,14 @@ const blog = defineCollection({
     date: z.coerce.date().catch(() => new Date()),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // Optional manual override: lower numbers sort first, ties/zero fall back to date.
+    order: z.number().default(0),
+    // Slugs (entry ids) of related projects/experience entries, set via a Decap
+    // relation widget. Left unconstrained (not z.enum of known ids) so a stale
+    // reference to a renamed/deleted entry can't break the whole site build —
+    // pages just filter it out when resolving.
+    projects: z.array(z.string()).default([]),
+    experiences: z.array(z.string()).default([]),
   }),
 });
 

@@ -8,9 +8,10 @@ interface Props {
   description: string;
   date: Date;
   tags: string[];
+  related?: { label: string; href: string }[];
 }
 
-const { title, description, date, tags } = Astro.props;
+const { title, description, date, tags, related } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — Blog`} description={description}>
@@ -23,6 +24,14 @@ const { title, description, date, tags } = Astro.props;
         <div class="post-tags">
           {tags.map((tag) => (
             <span class="pill">{tag}</span>
+          ))}
+        </div>
+      )}
+      {related && related.length > 0 && (
+        <div class="post-related">
+          <span class="related-label">Related:</span>
+          {related.map((r) => (
+            <a href={r.href} class="pill related-pill">{r.label}</a>
           ))}
         </div>
       )}
@@ -65,11 +74,36 @@ const { title, description, date, tags } = Astro.props;
   .post-tags {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-related {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+  }
+
+  .related-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  .related-pill {
+    color: var(--text-muted);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .related-pill:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
   }
 
   .post-content {
     color: var(--text);
+    margin-top: 1.5rem;
   }
 
   .post-content :global(p) {

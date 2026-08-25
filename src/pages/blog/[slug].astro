@@ -1,16 +1,31 @@
 ---
 import { getCollection, render } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+import { withBase } from "../../utils/paths";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const [posts, projects, experience] = await Promise.all([
+    getCollection("blog", ({ data }) => !data.draft),
+    getCollection("projects"),
+    getCollection("experience"),
+  ]);
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: {
+      post,
+      related: [
+        ...projects
+          .filter((p) => post.data.projects.includes(p.id))
+          .map((p) => ({ label: p.data.title, href: withBase(`/projects#${p.id}`) })),
+        ...experience
+          .filter((e) => post.data.experiences.includes(e.id))
+          .map((e) => ({ label: `${e.data.role} · ${e.data.company}`, href: withBase(`/#${e.id}`) })),
+      ],
+    },
   }));
 }
 
-const { post } = Astro.props;
+const { post, related } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -19,6 +34,7 @@ const { Content } = await render(post);
   description={post.data.description}
   date={post.data.date}
   tags={post.data.tags}
+  related={related}
 >
   <Content />
 </BlogPostLayout>

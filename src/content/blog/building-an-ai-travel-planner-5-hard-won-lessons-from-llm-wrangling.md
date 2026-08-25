@@ -13,6 +13,8 @@ tags:
   - Software Engineering
   - API Integration
 draft: false
+projects:
+  - ai-travel-planner
 ---
 ## 1. Grounding Beats Guessing—Make "Don't Fabricate" Unconditional
 

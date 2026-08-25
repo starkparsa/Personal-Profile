@@ -7,12 +7,14 @@ interface Props {
   liveUrl?: string;
   status: "current" | "past";
   href?: string;
+  id?: string;
+  relatedPosts?: { title: string; href: string }[];
 }
 
-const { title, description, tags, githubUrl, liveUrl, status, href } = Astro.props;
+const { title, description, tags, githubUrl, liveUrl, status, href, id, relatedPosts } = Astro.props;
 ---
 
-<article class="project-card card">
+<article class="project-card card" id={id}>
   <div class="project-head">
     <h3>{href ? <a href={href}>{title}</a> : title}</h3>
     <span class={`status status-${status}`}>{status === "current" ? "Active" : "Past"}</span>
@@ -35,6 +37,16 @@ const { title, description, tags, githubUrl, liveUrl, status, href } = Astro.pro
       </a>
     )}
   </div>
+  {relatedPosts && relatedPosts.length > 0 && (
+    <div class="project-related">
+      <span class="related-label">From the blog</span>
+      <ul class="related-list">
+        {relatedPosts.map((post) => (
+          <li><a href={post.href}>{post.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  )}
 </article>
 
 <style>
@@ -42,6 +54,7 @@ const { title, description, tags, githubUrl, liveUrl, status, href } = Astro.pro
     display: flex;
     flex-direction: column;
     height: 100%;
+    scroll-margin-top: 90px;
   }
 
   .project-head {
@@ -103,6 +116,41 @@ const { title, description, tags, githubUrl, liveUrl, status, href } = Astro.pro
   }
 
   .project-links a:hover {
+    color: var(--accent);
+  }
+
+  .project-related {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .related-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .related-list a {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .related-list a:hover {
     color: var(--accent);
   }
 </style>

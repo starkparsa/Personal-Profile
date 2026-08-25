@@ -3,12 +3,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 import site from "../../data/site.json";
+import { withBase } from "../../utils/paths";
 
-const projects = (await getCollection("projects")).sort((a, b) =>
-  a.data.date < b.data.date ? 1 : -1
-);
+const [allProjects, posts] = await Promise.all([
+  getCollection("projects"),
+  getCollection("blog", ({ data }) => !data.draft),
+]);
+const projects = allProjects.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 const current = projects.filter((p) => p.data.status === "current");
 const past = projects.filter((p) => p.data.status === "past");
+
+function relatedPostsFor(projectId: string) {
+  return posts
+    .filter((post) => post.data.projects.includes(projectId))
+    .map((post) => ({ title: post.data.title, href: withBase(`/blog/${post.id}`) }));
+}
 ---
 
 <BaseLayout title={`Projects — ${site.name}`} description="Current and past projects by Vaibhav Parasa.">
@@ -27,12 +36,14 @@ const past = projects.filter((p) => p.data.status === "past");
         <div class="projects-grid">
           {current.map((project) => (
             <ProjectCard
+              id={project.id}
               title={project.data.title}
               description={project.data.description}
               tags={project.data.tags}
               githubUrl={project.data.githubUrl}
               liveUrl={project.data.liveUrl}
               status={project.data.status}
+              relatedPosts={relatedPostsFor(project.id)}
             />
           ))}
         </div>
@@ -47,12 +58,14 @@ const past = projects.filter((p) => p.data.status === "past");
         <div class="projects-grid">
           {past.map((project) => (
             <ProjectCard
+              id={project.id}
               title={project.data.title}
               description={project.data.description}
               tags={project.data.tags}
               githubUrl={project.data.githubUrl}
               liveUrl={project.data.liveUrl}
               status={project.data.status}
+              relatedPosts={relatedPostsFor(project.id)}
             />
           ))}
         </div>

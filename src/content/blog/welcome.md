@@ -6,6 +6,7 @@ date: 2026-08-24
 tags:
   - meta
 draft: false
+order: -1
 ---
 This is the first post on this blog — a space to write about what I'm learning while building agentic AI systems, ML pipelines, and the infrastructure around them.
 

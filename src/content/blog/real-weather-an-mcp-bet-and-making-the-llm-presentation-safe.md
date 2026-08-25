@@ -10,6 +10,8 @@ description: "One dev session, four threads that turned out to be connected:
 date: "2026-08-25"
 tags: []
 draft: false
+projects:
+  - ai-travel-planner
 ---
 ## What shipped
 

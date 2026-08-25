@@ -1,12 +1,19 @@
 ---
 import { getCollection, render } from "astro:content";
+import { withBase } from "../utils/paths";
 
-const raw = await getCollection("experience");
+const [raw, posts] = await Promise.all([
+  getCollection("experience"),
+  getCollection("blog", ({ data }) => !data.draft),
+]);
 raw.sort((a, b) => a.data.order - b.data.order);
 const entries = await Promise.all(
   raw.map(async (entry) => {
     const { Content } = await render(entry);
-    return { data: entry.data, Content };
+    const relatedPosts = posts
+      .filter((post) => post.data.experiences.includes(entry.id))
+      .map((post) => ({ title: post.data.title, href: withBase(`/blog/${post.id}`) }));
+    return { id: entry.id, data: entry.data, Content, relatedPosts };
   })
 );
 ---
@@ -17,7 +24,7 @@ const entries = await Promise.all(
     <h2 class="section-title">Where I've worked</h2>
     <ol class="timeline">
       {entries.map((entry) => (
-        <li class="timeline-item">
+        <li class="timeline-item" id={entry.id}>
           <div class="timeline-marker" aria-hidden="true"></div>
           <div class="timeline-content">
             <div class="timeline-head">
@@ -30,6 +37,16 @@ const entries = await Promise.all(
             <div class="timeline-body">
               <entry.Content />
             </div>
+            {entry.relatedPosts.length > 0 && (
+              <div class="timeline-related">
+                <span class="related-label">From the blog</span>
+                <ul class="related-list">
+                  {entry.relatedPosts.map((post) => (
+                    <li><a href={post.href}>{post.title}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </li>
       ))}
@@ -51,6 +68,7 @@ const entries = await Promise.all(
     gap: 1.25rem;
     padding-bottom: 2.5rem;
     position: relative;
+    scroll-margin-top: 90px;
   }
 
   .timeline-item:last-child {
@@ -115,5 +133,40 @@ const entries = await Promise.all(
 
   .timeline-body :global(li) {
     margin-bottom: 0.4rem;
+  }
+
+  .timeline-related {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .related-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .related-list a {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .related-list a:hover {
+    color: var(--accent);
   }
 </style>

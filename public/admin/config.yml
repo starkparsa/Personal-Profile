@@ -115,6 +115,32 @@ collections:
         date_format: "YYYY-MM-DD"
         picker_utc: true
         default: "{{now}}"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+        default: 0
+        required: false
+        hint: "Optional. Lower numbers show first, overriding date order. Leave at 0 to sort by date (newest first)."
+      - label: "Related Projects"
+        name: "projects"
+        widget: "relation"
+        collection: "projects"
+        multiple: true
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        required: false
+        default: []
+      - label: "Related Experience"
+        name: "experiences"
+        widget: "relation"
+        collection: "experience"
+        multiple: true
+        search_fields: ["role", "company"]
+        value_field: "{{slug}}"
+        display_fields: ["role", "company"]
+        required: false
+        default: []
       - { label: "Tags", name: "tags", widget: "list", default: [] }
       - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
       - { label: "Post body", name: "body", widget: "markdown" }
