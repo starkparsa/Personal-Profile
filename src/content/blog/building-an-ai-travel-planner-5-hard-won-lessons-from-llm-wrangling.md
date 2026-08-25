@@ -6,7 +6,7 @@ description: I spent the last few weeks deep in the weeds of an AI travel
   about LLMs, APIs, and the gap between documentation and reality. Here are five
   lessons I learned the hard way.
 date: 2026-08-25
-order: 1
+order: ""
 projects:
   - ai-travel-planner
 tags:
