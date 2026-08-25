@@ -8,6 +8,7 @@ description: "One dev session, four threads that turned out to be connected:
   reasoning (twice, on two different providers), and a reminder that free-tier
   quotas lie more than you'd think."
 date: 2026-08-25
+order: 2
 projects:
   - ai-travel-planner
 tags:
