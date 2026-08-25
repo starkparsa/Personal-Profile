@@ -108,7 +108,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD", default: "{{now}}" }
       - { label: "Tags", name: "tags", widget: "list", default: [] }
       - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
       - { label: "Post body", name: "body", widget: "markdown" }

@@ -5,6 +5,7 @@ description: I spent the last few weeks deep in the weeds of an AI travel
   It's the kind of project where every solved bug teaches you something new
   about LLMs, APIs, and the gap between documentation and reality. Here are five
   lessons I learned the hard way.
+date: "2026-08-25"
 tags:
   - AI
   - LLM
