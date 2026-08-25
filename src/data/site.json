@@ -1,13 +1,65 @@
 {
-  "name": "Vaibhav Parasa",
-  "tagline": "AI/ML Engineer",
-  "subtitle": "Data Scientist & ML Engineer · Agentic AI & LLM Systems",
-  "location": "San Francisco, CA (open to relocation)",
-  "email": "vaibhav.v.parasa@gmail.com",
-  "githubUrl": "https://github.com/starkparsa",
-  "linkedinUrl": "https://www.linkedin.com/in/vaibhavparasa/",
-  "resumeFile": "/resume.pdf",
-  "bio": "I'm an AI/ML engineer working at the intersection of data engineering and agentic AI — designing LLM-driven systems, production ML pipelines, and the infrastructure that keeps them reliable at scale. My background spans agent architectures built on LangChain, ETL/ELT pipelines across Databricks and Snowflake, and predictive modeling for forecasting and demand planning. I hold an M.S. in Data Science from Florida State University and hold ServiceNow Admin & Developer certifications.",
+  "skills": [
+    {
+      "category": "Core",
+      "items": [
+        "Python",
+        "SQL",
+        "Databricks",
+        "Snowflake",
+        "AWS",
+        "Spark",
+        "Tableau",
+        "Scikit-learn",
+        "Pandas"
+      ]
+    },
+    {
+      "category": "ML & AI",
+      "items": [
+        "LangChain",
+        "Agentic AI",
+        "RAG",
+        "LLM Deployment",
+        "LLM Evaluation",
+        "MLflow",
+        "Optuna",
+        "Predictive & Statistical Modeling",
+        "Forecasting"
+      ]
+    },
+    {
+      "category": "Infrastructure",
+      "items": [
+        "ETL/ELT Pipelines",
+        "Data Warehousing",
+        "Cloud Architecture",
+        "Backend APIs",
+        "FastAPI",
+        "Docker",
+        "CI/CD"
+      ]
+    },
+    {
+      "category": "Platforms",
+      "items": [
+        "ServiceNow (Admin & Developer Certified)",
+        "JavaScript",
+        "HTML/CSS",
+        "IoT & ESP-32",
+        "Agile/SCRUM",
+        "KPI Design"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Student Attendance and Registration Using InverTrac as WebAPI",
+      "venue": "International Journal of Early Childhood Special Education",
+      "date": "Oct 2022"
+    }
+  ],
+  "bio": "I'm an AI/ML engineer working at the intersection of data engineering and agentic AI. Additionally, designing LLM-driven systems, production ML pipelines, and the infrastructure that keeps them reliable at scale. My background spans agent architectures built on LangChain, ETL/ELT pipelines across Databricks and Snowflake, and predictive modeling for forecasting and demand planning. I hold an M.S. in Data Science from Florida State University and hold ServiceNow Admin & Developer certifications.",
   "education": [
     {
       "degree": "M.S. Data Science",
@@ -22,43 +74,74 @@
       "date": "May 2022"
     }
   ],
+  "resumeFile": "/resume.pdf",
+  "name": "Vaibhav Parasa",
+  "githubUrl": "https://github.com/starkparsa",
+  "tagline": "AI/ML Engineer",
+  "linkedinUrl": "https://www.linkedin.com/in/vaibhavparasa/",
+  "location": "San Francisco, CA (open to relocation)",
+  "subtitle": "Data Scientist & ML Engineer · Agentic AI & LLM Systems",
   "certifications": [
-    { "name": "ServiceNow Certified System Administrator", "issuer": "ServiceNow", "date": "2022" },
-    { "name": "ServiceNow Certified Application Developer", "issuer": "ServiceNow", "date": "2022" },
-    { "name": "The Future of Payment Technologies", "issuer": "University of Michigan", "date": "Mar 2022" },
-    { "name": "Service-Oriented Architecture", "issuer": "University of Alberta", "date": "Feb 2022" },
-    { "name": "Cryptography", "issuer": "University of Maryland, College Park", "date": "Dec 2021" },
-    { "name": "Cloud Computing Applications, Part 1: Cloud Systems and Infrastructure", "issuer": "University of Illinois Urbana-Champaign", "date": "Nov 2021" },
-    { "name": "Cloud Computing Basics (Cloud 101)", "issuer": "LearnQuest", "date": "Nov 2021" },
-    { "name": "Ethics, Technology and Engineering", "issuer": "Eindhoven University of Technology, 4TU.Ethics", "date": "Nov 2021" },
-    { "name": "Essentials of Entrepreneurship: Thinking & Action", "issuer": "University of California, Irvine", "date": "Aug 2021" },
-    { "name": "Machine Learning Algorithms: Supervised Learning Tip to Tail", "issuer": "Alberta Machine Intelligence Institute", "date": "Aug 2021" },
-    { "name": "Agile Software Development", "issuer": "University of Minnesota", "date": "Feb 2021" },
-    { "name": "Data Visualization", "issuer": "University of Illinois Urbana-Champaign", "date": "Feb 2021" }
-  ],
-  "publications": [
     {
-      "title": "Student Attendance and Registration Using InverTrac as WebAPI",
-      "venue": "International Journal of Early Childhood Special Education",
-      "date": "Oct 2022"
+      "name": "ServiceNow Certified System Administrator",
+      "issuer": "ServiceNow",
+      "date": "2022"
+    },
+    {
+      "name": "ServiceNow Certified Application Developer",
+      "issuer": "ServiceNow",
+      "date": "2022"
+    },
+    {
+      "name": "The Future of Payment Technologies",
+      "issuer": "University of Michigan",
+      "date": "Mar 2022"
+    },
+    {
+      "name": "Service-Oriented Architecture",
+      "issuer": "University of Alberta",
+      "date": "Feb 2022"
+    },
+    {
+      "name": "Cryptography",
+      "issuer": "University of Maryland, College Park",
+      "date": "Dec 2021"
+    },
+    {
+      "name": "Cloud Computing Applications, Part 1: Cloud Systems and Infrastructure",
+      "issuer": "University of Illinois Urbana-Champaign",
+      "date": "Nov 2021"
+    },
+    {
+      "name": "Cloud Computing Basics (Cloud 101)",
+      "issuer": "LearnQuest",
+      "date": "Nov 2021"
+    },
+    {
+      "name": "Ethics, Technology and Engineering",
+      "issuer": "Eindhoven University of Technology, 4TU.Ethics",
+      "date": "Nov 2021"
+    },
+    {
+      "name": "Essentials of Entrepreneurship: Thinking & Action",
+      "issuer": "University of California, Irvine",
+      "date": "Aug 2021"
+    },
+    {
+      "name": "Machine Learning Algorithms: Supervised Learning Tip to Tail",
+      "issuer": "Alberta Machine Intelligence Institute",
+      "date": "Aug 2021"
+    },
+    {
+      "name": "Agile Software Development",
+      "issuer": "University of Minnesota",
+      "date": "Feb 2021"
+    },
+    {
+      "name": "Data Visualization",
+      "issuer": "University of Illinois Urbana-Champaign",
+      "date": "Feb 2021"
     }
   ],
-  "skills": [
-    {
-      "category": "Core",
-      "items": ["Python", "SQL", "Databricks", "Snowflake", "AWS", "Spark", "Tableau", "Scikit-learn", "Pandas"]
-    },
-    {
-      "category": "ML & AI",
-      "items": ["LangChain", "Agentic AI", "RAG", "LLM Deployment", "LLM Evaluation", "MLflow", "Optuna", "Predictive & Statistical Modeling", "Forecasting"]
-    },
-    {
-      "category": "Infrastructure",
-      "items": ["ETL/ELT Pipelines", "Data Warehousing", "Cloud Architecture", "Backend APIs", "FastAPI", "Docker", "CI/CD"]
-    },
-    {
-      "category": "Platforms",
-      "items": ["ServiceNow (Admin & Developer Certified)", "JavaScript", "HTML/CSS", "IoT & ESP-32", "Agile/SCRUM", "KPI Design"]
-    }
-  ]
+  "email": "vaibhav.v.parasa@gmail.com"
 }
