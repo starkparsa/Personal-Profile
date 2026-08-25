@@ -5,8 +5,9 @@ import site from "../../data/site.json";
 import { withBase } from "../../utils/paths";
 import { formatDate } from "../../utils/formatDate";
 
+// Higher order shows first, lower shows last; ties (mostly the default 0) fall back to date.
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort((a, b) => {
-  if (a.data.order !== b.data.order) return a.data.order - b.data.order;
+  if (a.data.order !== b.data.order) return b.data.order - a.data.order;
   return b.data.date.getTime() - a.data.date.getTime();
 });
 ---

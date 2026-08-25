@@ -124,7 +124,7 @@ collections:
         widget: "number"
         default: 0
         required: false
-        hint: "Optional. Lower numbers show first, overriding date order. Leave at 0 to sort by date (newest first)."
+        hint: "Optional. Higher numbers show first, overriding date order; lower numbers show last. Leave at 0 to sort by date (newest first)."
       - label: "Related Projects"
         name: "projects"
         widget: "relation"

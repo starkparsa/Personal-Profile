@@ -48,8 +48,9 @@ const blog = defineCollection({
     date: z.coerce.date().catch(() => new Date()),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
-    // Optional manual override: lower numbers sort first, ties/zero fall back to date.
-    // Same empty-string CMS quirk as experience.order above, same fix.
+    // Optional manual override: higher numbers sort first, lower sorts last,
+    // ties/zero fall back to date. Same empty-string CMS quirk as experience.order
+    // above, same fix.
     order: z.coerce.number().catch(() => 0),
     // Slugs (entry ids) of related projects/experience entries, set via a Decap
     // relation widget. Left unconstrained (not z.enum of known ids) so a stale
