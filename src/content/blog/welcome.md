@@ -3,10 +3,10 @@ title: Starting this blog
 description: Why I'm writing about the ML and agentic AI systems I'm building,
   and what to expect here.
 date: 2026-08-24
+order: 0
 tags:
   - meta
 draft: false
-order: -1
 ---
 This is the first post on this blog — a space to write about what I'm learning while building agentic AI systems, ML pipelines, and the infrastructure around them.
 
