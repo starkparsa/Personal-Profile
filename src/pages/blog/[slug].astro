@@ -16,7 +16,7 @@ export async function getStaticPaths() {
       related: [
         ...projects
           .filter((p) => post.data.projects.includes(p.id))
-          .map((p) => ({ label: p.data.title, href: withBase(`/projects#${p.id}`) })),
+          .map((p) => ({ label: p.data.title, href: withBase(`/projects/${p.id}`) })),
         ...experience
           .filter((e) => post.data.experiences.includes(e.id))
           .map((e) => ({ label: `${e.data.role} · ${e.data.company}`, href: withBase(`/#${e.id}`) })),

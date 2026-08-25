@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from "astro:content";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { withBase } from "../../utils/paths";
+
+export async function getStaticPaths() {
+  const [projects, posts] = await Promise.all([
+    getCollection("projects"),
+    getCollection("blog", ({ data }) => !data.draft),
+  ]);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      related: posts
+        .filter((post) => post.data.projects.includes(project.id))
+        .map((post) => ({ title: post.data.title, href: withBase(`/blog/${post.id}`) })),
+    },
+  }));
+}
+
+const { project, related } = Astro.props;
+const { Content } = await render(project);
+---
+
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.description}
+  status={project.data.status}
+  tags={project.data.tags}
+  githubUrl={project.data.githubUrl}
+  liveUrl={project.data.liveUrl}
+  hasSummary={project.body != null && project.body.trim().length > 0}
+  related={related}
+>
+  <Content />
+</ProjectLayout>

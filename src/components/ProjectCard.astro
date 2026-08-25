@@ -3,20 +3,16 @@ interface Props {
   title: string;
   description: string;
   tags: string[];
-  githubUrl?: string;
-  liveUrl?: string;
   status: "current" | "past";
-  href?: string;
-  id?: string;
-  relatedPosts?: { title: string; href: string }[];
+  href: string;
 }
 
-const { title, description, tags, githubUrl, liveUrl, status, href, id, relatedPosts } = Astro.props;
+const { title, description, tags, status, href } = Astro.props;
 ---
 
-<article class="project-card card" id={id}>
+<a href={href} class="project-card card">
   <div class="project-head">
-    <h3>{href ? <a href={href}>{title}</a> : title}</h3>
+    <h3>{title}</h3>
     <span class={`status status-${status}`}>{status === "current" ? "Active" : "Past"}</span>
   </div>
   <p class="project-desc">{description}</p>
@@ -25,36 +21,13 @@ const { title, description, tags, githubUrl, liveUrl, status, href, id, relatedP
       <span class="pill">{tag}</span>
     ))}
   </div>
-  <div class="project-links">
-    {githubUrl && (
-      <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="project-link">
-        Source →
-      </a>
-    )}
-    {liveUrl && (
-      <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="project-link">
-        Live →
-      </a>
-    )}
-  </div>
-  {relatedPosts && relatedPosts.length > 0 && (
-    <div class="project-related">
-      <span class="related-label">From the blog</span>
-      <ul class="related-list">
-        {relatedPosts.map((post) => (
-          <li><a href={post.href}>{post.title}</a></li>
-        ))}
-      </ul>
-    </div>
-  )}
-</article>
+</a>
 
 <style>
   .project-card {
     display: flex;
     flex-direction: column;
     height: 100%;
-    scroll-margin-top: 90px;
   }
 
   .project-head {
@@ -100,57 +73,5 @@ const { title, description, tags, githubUrl, liveUrl, status, href, id, relatedP
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-bottom: 1.1rem;
-  }
-
-  .project-links {
-    display: flex;
-    gap: 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-  }
-
-  .project-links a {
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-  }
-
-  .project-links a:hover {
-    color: var(--accent);
-  }
-
-  .project-related {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .related-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-  }
-
-  .related-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .related-list a {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-  }
-
-  .related-list a:hover {
-    color: var(--accent);
   }
 </style>

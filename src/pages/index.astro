@@ -30,11 +30,10 @@ const featured = projects
       <div class="projects-grid">
         {featured.map((project) => (
           <ProjectCard
+            href={withBase(`/projects/${project.id}`)}
             title={project.data.title}
             description={project.data.description}
             tags={project.data.tags}
-            githubUrl={project.data.githubUrl}
-            liveUrl={project.data.liveUrl}
             status={project.data.status}
           />
         ))}
