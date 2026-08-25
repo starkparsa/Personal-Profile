@@ -9,7 +9,11 @@ const experience = defineCollection({
     location: z.string().optional(),
     startDate: z.string(), // e.g. "Dec 2025"
     endDate: z.string(), // e.g. "Present"
-    order: z.number(), // lower = more recent, controls display order
+    // Decap's number widget writes an empty string ("") when the field is cleared
+    // and saved rather than omitting it, which z.number() rejects outright and
+    // fails the whole build. z.coerce.number() treats "" as 0 (and .catch() covers
+    // any other uncoercible value), the same defensive pattern as blog.date below.
+    order: z.coerce.number().catch(() => 0), // lower = more recent, controls display order
     // One-line summary shown on the compact homepage timeline; the full
     // write-up (body, bullet points) only renders on the entry's own page.
     summary: z.string(),
@@ -45,7 +49,8 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     // Optional manual override: lower numbers sort first, ties/zero fall back to date.
-    order: z.number().default(0),
+    // Same empty-string CMS quirk as experience.order above, same fix.
+    order: z.coerce.number().catch(() => 0),
     // Slugs (entry ids) of related projects/experience entries, set via a Decap
     // relation widget. Left unconstrained (not z.enum of known ids) so a stale
     // reference to a renamed/deleted entry can't break the whole site build —
