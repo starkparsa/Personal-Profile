@@ -16,7 +16,18 @@ const links = [
     <a href={withBase("/")} class="brand">
       <span class="brand-prompt">~/</span>{site.name.split(" ")[0].toLowerCase()}
     </a>
-    <nav class="links">
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <nav class="links" id="nav-links">
       {links.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
@@ -24,6 +35,38 @@ const links = [
     </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+  const links = document.getElementById("nav-links");
+
+  if (toggle && links) {
+    const closeMenu = () => {
+      links.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = links.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    links.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!links.classList.contains("is-open")) return;
+      if (event.target instanceof Node && !links.contains(event.target) && event.target !== toggle) {
+        closeMenu();
+      }
+    });
+  }
+</script>
 
 <style>
   .nav {
@@ -75,12 +118,71 @@ const links = [
     padding: 0.45rem 0.9rem;
   }
 
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 16px;
+    height: 2px;
+    margin: 0 auto;
+    background: var(--text-muted);
+    transition: background 0.2s ease;
+  }
+
+  .nav-toggle:hover .nav-toggle-bar {
+    background: var(--accent);
+  }
+
   @media (max-width: 640px) {
-    .links {
-      gap: 1rem;
+    .nav-toggle {
+      display: flex;
     }
+
+    .links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 0 1.5rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease, padding 0.25s ease;
+    }
+
+    .links.is-open {
+      max-height: 320px;
+      padding: 0.5rem 1.5rem 1.25rem;
+    }
+
     .links a:not(.resume-btn) {
-      display: none;
+      width: 100%;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .links a:not(.resume-btn):last-of-type {
+      border-bottom: none;
+    }
+
+    .resume-btn {
+      margin-top: 1rem;
     }
   }
 </style>
