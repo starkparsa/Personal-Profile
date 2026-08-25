@@ -32,7 +32,10 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    date: z.string(), // e.g. "2026-01-15"
+    // Decap's date widget writes dates back unquoted, which YAML parses as a native
+    // timestamp (not a string). z.coerce.date() accepts a quoted string, an unquoted
+    // YAML timestamp, or a Date object alike, so it's immune to that either way.
+    date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),

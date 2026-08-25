@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { withBase } from "../utils/paths";
+import { formatDate } from "../utils/formatDate";
 
 interface Props {
   title: string;
   description: string;
-  date: string;
+  date: Date;
   tags: string[];
 }
 
@@ -16,7 +17,7 @@ const { title, description, date, tags } = Astro.props;
   <article class="section post">
     <div class="container container-narrow">
       <a href={withBase("/blog")} class="back-link">← Back to blog</a>
-      <p class="post-date">{date}</p>
+      <p class="post-date">{formatDate(date)}</p>
       <h1 class="post-title">{title}</h1>
       {tags.length > 0 && (
         <div class="post-tags">
