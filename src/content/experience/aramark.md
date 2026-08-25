@@ -5,6 +5,7 @@ location: "Tallahassee, FL"
 startDate: "Oct 2023"
 endDate: "Dec 2024"
 order: 3
+summary: "Rebuilt the demand forecasting model behind campus food ordering, improving planning accuracy 25% and cutting waste."
 ---
 
 - Traced persistent food over-ordering to a flaw in the demand forecasting algorithm and was brought onto the redesign of that system.

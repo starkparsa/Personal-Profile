@@ -5,6 +5,7 @@ location: "Hyderabad, IN"
 startDate: "Jun 2022"
 endDate: "Jun 2023"
 order: 4
+summary: "Built predictive market and demand models for enterprise clients and earned ServiceNow Admin/Developer certifications."
 ---
 
 - Analysis was limited by having no direct line to the clients generating the data, so with the team established single-point client contacts. That change made accurate requirements, and the analytical work itself, possible.

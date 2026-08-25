@@ -10,8 +10,8 @@ import site from "../data/site.json";
 import { withBase } from "../utils/paths";
 
 const projects = await getCollection("projects");
-const featured = projects
-  .filter((p) => p.data.featured)
+const active = projects
+  .filter((p) => p.data.status === "current")
   .sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 
@@ -19,16 +19,15 @@ const featured = projects
   <Hero />
   <ExperienceTimeline />
   <SkillsGrid />
-  <EducationCerts />
   <section class="section">
     <div class="container">
       <p class="section-label">Projects</p>
       <div class="projects-head">
-        <h2 class="section-title">Featured work</h2>
+        <h2 class="section-title">Active projects</h2>
         <a href={withBase("/projects")} class="btn">View all →</a>
       </div>
       <div class="projects-grid">
-        {featured.map((project) => (
+        {active.map((project) => (
           <ProjectCard
             href={withBase(`/projects/${project.id}`)}
             title={project.data.title}
@@ -40,6 +39,7 @@ const featured = projects
       </div>
     </div>
   </section>
+  <EducationCerts />
 </BaseLayout>
 
 <style>

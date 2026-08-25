@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from "astro:content";
+import ExperienceLayout from "../../layouts/ExperienceLayout.astro";
+import { withBase } from "../../utils/paths";
+
+export async function getStaticPaths() {
+  const [entries, posts] = await Promise.all([
+    getCollection("experience"),
+    getCollection("blog", ({ data }) => !data.draft),
+  ]);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      related: posts
+        .filter((post) => post.data.experiences.includes(entry.id))
+        .map((post) => ({ title: post.data.title, href: withBase(`/blog/${post.id}`) })),
+    },
+  }));
+}
+
+const { entry, related } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ExperienceLayout
+  role={entry.data.role}
+  company={entry.data.company}
+  location={entry.data.location}
+  startDate={entry.data.startDate}
+  endDate={entry.data.endDate}
+  summary={entry.data.summary}
+  related={related}
+>
+  <Content />
+</ExperienceLayout>

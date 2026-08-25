@@ -5,6 +5,7 @@ location: "Remote"
 startDate: "Dec 2025"
 endDate: "Present"
 order: 1
+summary: "Leading a client-facing agentic AI implementation and integrating LLM tooling into ETL/ELT pipelines across Databricks and Snowflake."
 ---
 
 - Lead a client-facing agentic AI implementation, owning the architecture and workflows that automate processes previously handled manually.

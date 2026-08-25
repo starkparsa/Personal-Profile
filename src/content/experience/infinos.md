@@ -5,6 +5,7 @@ location: "Hyderabad, IN"
 startDate: "May 2021"
 endDate: "May 2022"
 order: 5
+summary: "Built the backend and database architecture for a mobile-controlled IoT cooling unit, from device protocol to API."
 ---
 
 - Built the database architecture and backend API layer for a mobile-controlled IoT cooling unit, letting users regulate temperature and access from anywhere over a stable connection, with multi-layer security and hashing designed in from the start rather than retrofitted.

@@ -10,6 +10,9 @@ const experience = defineCollection({
     startDate: z.string(), // e.g. "Dec 2025"
     endDate: z.string(), // e.g. "Present"
     order: z.number(), // lower = more recent, controls display order
+    // One-line summary shown on the compact homepage timeline; the full
+    // write-up (body, bullet points) only renders on the entry's own page.
+    summary: z.string(),
   }),
 });
 

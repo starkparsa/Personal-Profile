@@ -79,7 +79,11 @@ collections:
       - { label: "Start Date", name: "startDate", widget: "string", hint: "e.g. Dec 2025" }
       - { label: "End Date", name: "endDate", widget: "string", hint: "e.g. Present" }
       - { label: "Order", name: "order", widget: "number", hint: "1 = most recent, shown first" }
-      - { label: "Bullet points", name: "body", widget: "markdown" }
+      - label: "Summary"
+        name: "summary"
+        widget: "string"
+        hint: "One line shown on the homepage timeline, e.g. what the role was in a sentence."
+      - { label: "Bullet points (shown on this role's own page)", name: "body", widget: "markdown" }
 
   - name: "projects"
     label: "Projects"

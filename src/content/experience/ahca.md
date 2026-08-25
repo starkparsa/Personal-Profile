@@ -5,6 +5,7 @@ location: "Tallahassee, FL"
 startDate: "Feb 2025"
 endDate: "Jan 2026"
 order: 2
+summary: "Produced financial analysis and audit KPIs for 500+ healthcare licensure applicants across the state of Florida."
 ---
 
 - Produced financial analysis reports for healthcare licensure applications across 500+ organizations. Each required independent judgment, since no two applicants shared a financial structure, compliance history, or operational standing, so the work could not be templated.
