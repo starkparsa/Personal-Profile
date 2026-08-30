@@ -62,10 +62,16 @@ renamed to `starkparsa.github.io`, drop `base` from `astro.config.mjs` and remov
 
 ## Design system
 
-Dark-first, single teal accent (`--accent: #2dd4bf`), JetBrains Mono for
-headings/labels/nav, Inter for body copy. Reusable primitives in `global.css`: `.section`,
-`.section-label`, `.card`, `.pill`, `.btn` / `.btn-accent`. Prefer these over new ad-hoc
-classes when building new sections.
+Dusk/"hopecore block-game" palette — a warm twilight-violet ground (`--bg: #241a33`) with
+a single coral accent (`--accent: #ffab7e`), hard pixel-square corners (`--radius: 0px`)
+and offset hard-edge drop shadows (`--shadow`) instead of blurred ones. Headings use
+Silkscreen (`--font-head`, a bitmap/pixel face), the hero name uses Press Start 2P
+(`--font-pixel`, reserved for that one spot — it's unreadable at small sizes), nav/labels/
+meta data stay on JetBrains Mono (`--font-mono`), and body copy stays on Inter
+(`--font-sans`) for long-form readability. All tokens live in `src/styles/global.css`.
+Reusable primitives: `.section`, `.section-label`, `.card`, `.pill`, `.btn` / `.btn-accent`.
+Prefer these over new ad-hoc classes when building new sections — most of a palette or
+shape change should only ever require touching the tokens in `global.css`.
 
 ## Documentation
 

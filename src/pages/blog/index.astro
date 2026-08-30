@@ -74,12 +74,30 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort((a, 
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.5rem;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 4px 4px 0 var(--shadow);
+    transition: border-color 0.15s ease, transform 0.05s steps(1), box-shadow 0.05s steps(1);
   }
 
   .post-link:hover {
     border-color: var(--border-hover);
-    transform: translateY(-2px);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--shadow-strong);
+  }
+
+  .post-link:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--shadow);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .post-link {
+      transition: border-color 0.15s ease;
+    }
+
+    .post-link:hover,
+    .post-link:active {
+      transform: none;
+    }
   }
 
   .post-head {
