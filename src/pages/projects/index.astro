@@ -9,6 +9,7 @@ const allProjects = await getCollection("projects");
 const projects = allProjects.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 const current = projects.filter((p) => p.data.status === "current");
 const past = projects.filter((p) => p.data.status === "past");
+const allTags = [...new Set(projects.flatMap((p) => p.data.tags))].sort((a, b) => a.localeCompare(b));
 ---
 
 <BaseLayout title={`Projects — ${site.name}`} description="Current and past projects by Vaibhav Parasa.">
@@ -17,11 +18,25 @@ const past = projects.filter((p) => p.data.status === "past");
       <p class="section-label">Projects</p>
       <h1 class="section-title">Current &amp; past projects</h1>
       <p class="lede">A mix of production systems and self-directed builds — agentic AI, ML pipelines, and backend infrastructure.</p>
+
+      {allTags.length > 0 && (
+        <div class="filter-bar">
+          <div class="tag-chips" id="tagChips">
+            {allTags.map((tag) => (
+              <button type="button" class="tag-chip" data-tag={tag}>{tag}</button>
+            ))}
+          </div>
+          <div class="filter-meta">
+            <span class="filter-count" id="filterCount">Showing all {projects.length} projects</span>
+            <button type="button" class="clear-btn" id="clearFilters">✕ Clear filters</button>
+          </div>
+        </div>
+      )}
     </div>
   </section>
 
   {current.length > 0 && (
-    <section class="section">
+    <section class="section" id="current-section">
       <div class="container">
         <h2 class="group-title">Current</h2>
         <div class="projects-grid">
@@ -40,7 +55,7 @@ const past = projects.filter((p) => p.data.status === "past");
   )}
 
   {past.length > 0 && (
-    <section class="section">
+    <section class="section" id="past-section">
       <div class="container">
         <h2 class="group-title">Past</h2>
         <div class="projects-grid">
@@ -68,6 +83,80 @@ const past = projects.filter((p) => p.data.status === "past");
     max-width: 55ch;
   }
 
+  .filter-bar {
+    margin-top: 2rem;
+  }
+
+  .tag-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.05s steps(1);
+  }
+
+  .tag-chip:hover {
+    border-color: var(--border-hover);
+    color: var(--text);
+  }
+
+  .tag-chip.is-selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    transform: translate(1px, 1px);
+    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .filter-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-count {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .clear-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: none;
+  }
+
+  .clear-btn.is-visible {
+    display: inline;
+  }
+
+  .section.is-hidden {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tag-chip {
+      transition: none;
+    }
+  }
+
   .group-title {
     font-size: 1.1rem;
     color: var(--text-muted);
@@ -86,3 +175,56 @@ const past = projects.filter((p) => p.data.status === "past");
     }
   }
 </style>
+
+<script>
+  const chipsEl = document.getElementById("tagChips");
+  const countEl = document.getElementById("filterCount");
+  const clearBtn = document.getElementById("clearFilters");
+
+  if (chipsEl && countEl && clearBtn) {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".project-card"));
+    const sections = ["current-section", "past-section"]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    const selected = new Set<string>();
+    const total = cards.length;
+
+    chipsEl.querySelectorAll<HTMLButtonElement>(".tag-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const tag = chip.dataset.tag;
+        if (!tag) return;
+        if (selected.has(tag)) selected.delete(tag);
+        else selected.add(tag);
+        chip.classList.toggle("is-selected");
+        render();
+      });
+    });
+
+    clearBtn.addEventListener("click", () => {
+      selected.clear();
+      chipsEl.querySelectorAll(".tag-chip").forEach((c) => c.classList.remove("is-selected"));
+      render();
+    });
+
+    function render() {
+      let visible = 0;
+      cards.forEach((card) => {
+        const tags = (card.dataset.tags || "").split("|").filter(Boolean);
+        const show = selected.size === 0 || tags.some((t) => selected.has(t));
+        card.classList.toggle("is-hidden", !show);
+        if (show) visible++;
+      });
+
+      sections.forEach((section) => {
+        const anyVisible = Array.from(section.querySelectorAll(".project-card")).some(
+          (c) => !c.classList.contains("is-hidden")
+        );
+        section.classList.toggle("is-hidden", !anyVisible);
+      });
+
+      countEl!.textContent =
+        selected.size === 0 ? `Showing all ${total} projects` : `Showing ${visible} of ${total} projects`;
+      clearBtn!.classList.toggle("is-visible", selected.size > 0);
+    }
+  }
+</script>

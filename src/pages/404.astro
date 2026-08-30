@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
+---
+
+<BaseLayout title="Level Not Found — 404" description="This page doesn't exist or has moved.">
+  <section class="section error-section">
+    <div class="container">
+      <div class="error-screen">
+        <p class="error-code">404</p>
+        <h1 class="error-title">▸ Level Not Found</h1>
+        <p class="error-body">The page you're looking for doesn't exist, or it moved. Let's get you back to the map.</p>
+        <a href={withBase("/")} class="btn btn-accent">▸ Return to Base (Home)</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-section {
+    padding: 6rem 0;
+    border-bottom: none;
+  }
+
+  .error-screen {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    border: 2px dashed var(--border);
+  }
+
+  .error-code {
+    font-family: var(--font-pixel);
+    font-size: clamp(1.6rem, 6vw, 2.6rem);
+    color: var(--accent);
+    text-shadow: 4px 4px 0 var(--shadow);
+    margin: 0;
+  }
+
+  .error-title {
+    font-size: 1.2rem;
+    margin: 1.25rem 0 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .error-body {
+    font-size: 0.92rem;
+    margin: 0 0 1.75rem;
+  }
+</style>

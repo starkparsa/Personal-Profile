@@ -221,3 +221,57 @@ pre code {
   background: var(--accent-soft);
   color: var(--accent);
 }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -60px;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--bg);
+  box-shadow: 3px 3px 0 var(--shadow-strong);
+  transition: top 0.15s steps(2);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 60;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  padding: 0.7rem 0.9rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: 2px solid var(--bg);
+  box-shadow: 3px 3px 0 var(--shadow-strong);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .to-top {
+    transition: none;
+  }
+}

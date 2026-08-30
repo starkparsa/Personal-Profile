@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 import { withBase } from "../utils/paths";
 import { formatDate } from "../utils/formatDate";
 
@@ -17,7 +18,11 @@ const { title, description, date, tags, related } = Astro.props;
 <BaseLayout title={`${title} — Blog`} description={description}>
   <article class="section post">
     <div class="container container-narrow">
-      <a href={withBase("/blog")} class="back-link">← Back to blog</a>
+      <Breadcrumb items={[
+        { label: "Home", href: withBase("/") },
+        { label: "Blog", href: withBase("/blog") },
+        { label: title },
+      ]} />
       <p class="post-date">{formatDate(date)}</p>
       <h1 class="post-title">{title}</h1>
       {tags.length > 0 && (
@@ -45,18 +50,6 @@ const { title, description, date, tags, related } = Astro.props;
 <style>
   .container-narrow {
     max-width: 720px;
-  }
-
-  .back-link {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-  }
-
-  .back-link:hover {
-    color: var(--accent);
   }
 
   .post-date {

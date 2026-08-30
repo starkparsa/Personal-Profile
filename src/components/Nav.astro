@@ -34,6 +34,9 @@ const links = [
       <a href={withBase(site.resumeFile)} class="btn btn-accent resume-btn" download>Resume</a>
     </nav>
   </div>
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+  </div>
 </header>
 
 <script>
@@ -65,6 +68,19 @@ const links = [
         closeMenu();
       }
     });
+  }
+
+  const progressFill = document.getElementById("scrollProgressFill");
+
+  if (progressFill) {
+    const onScroll = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progressFill.style.width = pct + "%";
+    };
+
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 </script>
 
@@ -116,6 +132,18 @@ const links = [
 
   .resume-btn {
     padding: 0.45rem 0.9rem;
+  }
+
+  .scroll-progress {
+    height: 3px;
+    background: var(--bg-elevated-2);
+  }
+
+  .scroll-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(255, 171, 126, 0.6);
   }
 
   .nav-toggle {

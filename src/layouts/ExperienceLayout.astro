@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 import { withBase } from "../utils/paths";
 
 interface Props {
@@ -18,7 +19,11 @@ const { role, company, location, startDate, endDate, summary, related } = Astro.
 <BaseLayout title={`${role} — ${company}`} description={summary}>
   <article class="section post">
     <div class="container container-narrow">
-      <a href={withBase("/#experience")} class="back-link">← Back to experience</a>
+      <Breadcrumb items={[
+        { label: "Home", href: withBase("/") },
+        { label: "Experience", href: withBase("/#experience") },
+        { label: role },
+      ]} />
 
       <h1 class="role-title">{role}</h1>
       <p class="role-meta">
@@ -51,18 +56,6 @@ const { role, company, location, startDate, endDate, summary, related } = Astro.
 <style>
   .container-narrow {
     max-width: 720px;
-  }
-
-  .back-link {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-  }
-
-  .back-link:hover {
-    color: var(--accent);
   }
 
   .role-title {

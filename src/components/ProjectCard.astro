@@ -10,7 +10,7 @@ interface Props {
 const { title, description, tags, status, href } = Astro.props;
 ---
 
-<a href={href} class="project-card card">
+<a href={href} class="project-card card" data-tags={tags.join("|")}>
   <div class="project-head">
     <h3>{title}</h3>
     <span class={`status status-${status}`}>{status === "current" ? "Active" : "Past"}</span>
@@ -28,6 +28,10 @@ const { title, description, tags, status, href } = Astro.props;
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
+
+  .project-card.is-hidden {
+    display: none;
   }
 
   .project-head {

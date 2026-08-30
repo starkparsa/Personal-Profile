@@ -12,7 +12,7 @@ const entries = (await getCollection("experience")).sort((a, b) => a.data.order 
     <ol class="timeline">
       {entries.map((entry) => (
         <li class="timeline-item">
-          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class={`timeline-marker ${entry.data.endDate.toLowerCase() === "present" ? "is-active" : ""}`} aria-hidden="true"></div>
           <a href={withBase(`/experience/${entry.id}`)} class="timeline-content">
             <div class="timeline-head">
               <h3>{entry.data.role}</h3>
@@ -69,6 +69,31 @@ const entries = (await getCollection("experience")).sort((a, b) => a.data.order 
     background: var(--bg-elevated);
     border: 2px solid var(--accent-dim);
     margin-top: 2px;
+    position: relative;
+  }
+
+  .timeline-marker.is-active {
+    border-color: var(--accent);
+  }
+
+  .timeline-marker.is-active::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: var(--accent);
+    animation: pulse 1.1s steps(2) infinite;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.15;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-marker.is-active::after {
+      animation: none;
+    }
   }
 
   .timeline-content {

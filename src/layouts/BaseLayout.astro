@@ -28,10 +28,28 @@ const { title, description = "Vaibhav Parasa — AI/ML Engineer portfolio, proje
     />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">▸ Skip to content</a>
     <Nav />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <Footer />
+    <button type="button" class="to-top" id="toTop" aria-label="Scroll to top">▲ Top</button>
+    <script>
+      const toTop = document.getElementById("toTop");
+
+      if (toTop) {
+        const onScroll = () => {
+          toTop.classList.toggle("is-visible", window.scrollY > 700);
+        };
+
+        document.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        toTop.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    </script>
   </body>
 </html>
