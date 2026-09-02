@@ -1,11 +1,20 @@
 ---
-title: "AI Travel Planner"
-description: "Conversational trip planner where users describe travel needs in natural language and get day-by-day itineraries from a local LLM, with an agent loop that decides when to pull in live weather and currency data."
-tags: ["FastAPI", "Streamlit", "Ollama", "MySQL", "SQLAlchemy", "Docker", "GitHub Actions"]
-githubUrl: "https://github.com/starkparsa/Travel-Planner"
-status: "current"
+title: Itinrera
+description: Conversational trip planner where users describe travel needs in
+  natural language and get day-by-day itineraries from a local LLM, with an
+  agent loop that decides when to pull in live weather and currency data.
+tags:
+  - FastAPI
+  - Streamlit
+  - Ollama
+  - MySQL
+  - SQLAlchemy
+  - Docker
+  - GitHub Actions
+githubUrl: https://github.com/starkparsa/Travel-Planner
+status: current
 featured: true
-date: "2026-08"
+date: 2026-08
 ---
 
 A chat-driven itinerary generator: Streamlit handles the conversational UI, FastAPI + SQLAlchemy/Alembic manage backend state in MySQL, and Ollama runs the model locally (with swappable cloud-provider support).
