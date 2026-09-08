@@ -5,7 +5,7 @@ description: >-
 
   A debugging journey through several plausible-but-wrong fixes before finding the real cause of a chat reload bug, followed by a disciplined codebase cleanup and two structural refactors.
 date: 2026-09-08
-order: 6
+order: 7
 projects:
   - ai-travel-planner
 experiences: []
